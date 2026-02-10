@@ -7,10 +7,10 @@ set -e  # Stop on error
 echo "🚀 Installing DNS + Web Server untuk lab-smk.xyz..."
 
 # Update system
-sudo apt update && sudo apt upgrade -y
+apt update && sudo apt upgrade -y
 
 # Install BIND9 + Apache
-sudo apt install -y bind9 apache2 openssl
+apt install -y bind9 sudo apache2 openssl
 
 # 1. DNS ZONE lab-smk.xyz
 sudo mkdir -p /etc/bind/zones
