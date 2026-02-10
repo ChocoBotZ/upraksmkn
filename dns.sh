@@ -42,7 +42,7 @@ sudo sed -i '/options {/a\    recursion yes;\n    allow-recursion { 192.168.30.0
 sudo systemctl restart bind9 && sudo systemctl enable bind9
 
 # 2. Web Server + HTTPS Self-Signed
-echo 'anjay bisa awokawokawok' | sudo tee /var/www/html/index.html
+sudo sh -c 'echo -e "anjay bisa" > /var/www/html/index.html'
 
 # Generate SSL
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
