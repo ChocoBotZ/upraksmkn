@@ -7,11 +7,13 @@
 | www | 192.168.30.10 |
 | **monitor** | **192.168.30.10** |
 
-## 🚀 Deploy:
+## 🚀 Cara Install:
 ```bash
+git clone https://github.com/username/lab-smk-server.git
+cd lab-smk-server
 chmod +x *.sh
-sudo ./01-dns-web-server.sh    # DNS + Web + HTTPS
-sudo ./02-cacti.sh             # CACTI Monitoring
+sudo ./dnsweb.sh
+sudo ./cacti.sh
 
 
 ***
