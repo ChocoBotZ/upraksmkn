@@ -51,6 +51,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   -subj "/C=ID/ST=Jakarta/L=Jakarta/O=LabSMK/CN=lab-smk.xyz"
 
 sudo a2enmod ssl rewrite
+sudo a2ensite default-ssl
 sudo systemctl restart apache2 && sudo systemctl enable apache2
 
 echo "✅ DNS+Web Selesai!"
