@@ -11,7 +11,7 @@ sudo apt update
 sudo apt install -y apache2 mariadb-server php php-mysql php-snmp php-gd php-ldap php-net-socket php-xml php-zip php-mbstring snmp snmpd rrdtool wget
 
 # Secure MariaDB
-sudo mysql_secure_installation <<< "y$n$n$n$n$y"  # Auto-yes, no password
+echo "Skipping mysql_secure_installation (non-interactive)"
 
 # Create Cacti Database
 sudo mysql -e "
