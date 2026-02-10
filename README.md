@@ -13,7 +13,7 @@ apt install git
 git clone https://github.com/ChocoBotZ/upraksmkn
 cd lab-smk-server
 chmod +x *.sh
-sudo ./dnsweb.sh
+sudo ./dns.sh
 sudo ./cacti.sh
 
 
