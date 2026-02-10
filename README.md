@@ -11,7 +11,7 @@
 ```bash
 apt install git
 git clone https://github.com/ChocoBotZ/upraksmkn
-cd lab-smk-server
+cd upraksmkn
 chmod +x *.sh
 sudo ./dns.sh
 sudo ./cacti.sh
