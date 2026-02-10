@@ -9,7 +9,8 @@
 
 ## 🚀 Cara Install:
 ```bash
-git clone https://github.com/username/lab-smk-server.git
+apt install git
+git clone https://github.com/ChocoBotZ/upraksmkn
 cd lab-smk-server
 chmod +x *.sh
 sudo ./dnsweb.sh
