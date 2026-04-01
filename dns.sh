@@ -34,22 +34,26 @@ sudo chown bind:bind /etc/bind/zones/db.lab-smk.xyz
 sudo chmod 644 /etc/bind/zones/db.lab-smk.xyz
 
 # Path file konfigurasi
-FILE="/etc/bind/named.conf.local"
+FILE_CONF="/etc/bind/named.conf.local"
+DOMAIN="lab-smk.xyz"
+DB_PATH="/etc/bind/db.lab-smk"
 
-echo "Menambahkan konfigurasi zone ke $FILE..."
+# Cek apakah konfigurasi zona sudah ada di dalam file
+if grep -q "zone \"$DOMAIN\"" "$FILE_CONF"; then
+    echo "Zona $DOMAIN sudah terkonfigurasi di $FILE_CONF. Tidak ada perubahan dilakukan."
+else
+    echo "Menambahkan konfigurasi zona $DOMAIN ke $FILE_CONF..."
+    
+    # Menambahkan blok zona ke akhir file
+    cat <<EOF >> "$FILE_CONF"
 
-# Menggunakan sudo bash -c agar seluruh blok penulisan memiliki izin root
-sudo bash -c "cat >> $FILE <<EOF
-
-zone \"lab-smk.xyz\" { 
-    type master; 
-    file \"/etc/bind/zones/db.lab-smk.xyz\"; 
+zone "$DOMAIN" {
+    type master;
+    file "$DB_PATH";
 };
-EOF"
+EOF
 
-echo "Selesai! Berikut isi akhir file $FILE:"
-tail -n 4 $FILE
-
+    echo "Konfigurasi berhasil ditambahkan."
 
 # Secure DNS (disable recursion VLAN 20)
 sudo sed -i '/options {/a\    recursion yes;\n    allow-recursion { 192.168.30.0/24; };\n    allow-query { localhost; 192.168.30.0/24; };' /etc/bind/named.conf.options
