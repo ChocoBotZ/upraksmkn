@@ -6,7 +6,7 @@ echo "🚀 Installing CACTI via APT (No 404 error)..."
 
 # Update + Install CACTI langsung
 sudo apt update
-sudo apt install apt install cacti snmp snmpd rrdtool -y
+sudo apt install cacti snmp snmpd rrdtool -y
 
 CONF="/etc/snmp/snmpd.conf"
 
