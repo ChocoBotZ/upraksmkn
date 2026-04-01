@@ -45,7 +45,7 @@ EOF
 # Secure DNS (disable recursion VLAN 20)
 sudo sed -i '/options {/a\    recursion yes;\n    allow-recursion { 192.168.30.0/24; };\n    allow-query { localhost; 192.168.30.0/24; };' /etc/bind/named.conf.options
 
-sudo systemctl restart bind9 && sudo systemctl enable bind9
+sudo systemctl restart bind9
 
 # 2. Web Server + HTTPS Self-Signed
 sudo sh -c 'echo -e "anjay bisa" > /var/www/html/index.html'
