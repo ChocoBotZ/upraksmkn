@@ -6,14 +6,22 @@ echo "🚀 Installing CACTI via APT (No 404 error)..."
 
 # Update + Install CACTI langsung
 sudo apt update
-sudo apt install -y cacti cacti-spine
+sudo apt install apt install cacti snmp snmpd rrdtool -y
 
-# Auto-config database saat install (pilih: mysql, password: cacti123)
-sudo dpkg-reconfigure cacti
+CONF="/etc/snmp/snmpd.conf"
 
-# SNMP untuk router/server
-sudo sed -i "s/#rocommunity public/rocommunity public/" /etc/snmp/snmpd.conf
-sudo systemctl restart snmpd && sudo systemctl enable snmpd
+# 1. Hapus baris agentAddress dan rocommunity yang lama
+sed -i '/agentAddress/d' $CONF
+sed -i '/rocommunity/d' $CONF
+
+# 2. Tambahkan konfigurasi baru
+echo "agentAddress udp:161" >> $CONF
+echo "rocommunity public" >> $CONF
+
+# 3. Restart layanan snmpd
+systemctl restart snmpd
+
+echo "SNMP Berhasil diubah ke: public"
 
 # Permissions
 sudo chown -R www-data:www-data /usr/share/cacti
