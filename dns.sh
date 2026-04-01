@@ -13,7 +13,6 @@ apt update && sudo apt upgrade -y
 apt install -y bind9 sudo apache2 openssl
 
 # 1. DNS ZONE lab-smk.xyz
-sudo mkdir -p /etc/bind/zones
 cat > /tmp/db.lab-smk.xyz << 'EOF'
 $TTL    604800
 @       IN      SOA     lab-smk.xyz. root.lab-smk.xyz. (
@@ -29,16 +28,16 @@ ns      IN      A       192.168.30.10
 www     IN      A       192.168.30.10
 monitor IN      A       192.168.30.10
 EOF
-sudo cp /tmp/db.lab-smk.xyz /etc/bind/zones/
-sudo chown bind:bind /etc/bind/zones/db.lab-smk.xyz
-sudo chmod 644 /etc/bind/zones/db.lab-smk.xyz
+sudo cp /tmp/db.lab-smk.xyz /etc/bind/
+sudo chown bind:bind /etc/bind/db.lab-smk.xyz
+sudo chmod 644 /etc/bind/db.lab-smk.xyz
 
 # Menambahkan konfigurasi zona secara paksa ke baris paling bawah
 cat <<EOF >> /etc/bind/named.conf.local
 
 zone "lab-smk.xyz" {
     type master;
-    file "/etc/bind/db.lab-smk";
+    file "/etc/bind/db.lab-smk.xyz";
 };
 EOF
 
