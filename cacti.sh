@@ -11,11 +11,9 @@ sudo apt install cacti snmp snmpd rrdtool -y
 CONF="/etc/snmp/snmpd.conf"
 
 # 1. Hapus baris agentAddress dan rocommunity yang lama
-sed -i '/agentAddress/d' $CONF
 sed -i '/rocommunity/d' $CONF
 
 # 2. Tambahkan konfigurasi baru
-echo "agentAddress udp:161" >> $CONF
 echo "rocommunity public" >> $CONF
 
 # 3. Restart layanan snmpd
